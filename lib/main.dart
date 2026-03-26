@@ -1,6 +1,12 @@
+import 'package:evently_app/core/providers/settings_provider.dart';
+import 'package:evently_app/core/routes/app_router.dart';
+import 'package:evently_app/core/routes/app_routes.dart';
 import 'package:evently_app/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:provider/provider.dart';
+
+import 'l10n/app_localizations.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -14,12 +20,27 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => SettingsProvider()),
+      ],
+      child: Builder(
+        builder: (context) {
+          var settingsProvider = Provider.of<SettingsProvider>(context);
+          return MaterialApp(
+            title: 'Evently',
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            locale: settingsProvider.locale,
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: settingsProvider.themeMode,
+            initialRoute: AppRoutes.onboardingStart,
+            onGenerateRoute: AppRouter.onGenerateRoute,
+          );
+        },
+      ),
     );
   }
 }

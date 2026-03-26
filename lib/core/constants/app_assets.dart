@@ -1,7 +1,8 @@
 class AppAssets {
   static const String _images = 'assets/images';
 
-  static const String eventlyIcon = '$_images/evently_icon.svg';
+  static const String eventlyIcon = '$_images/evently_icon.png';
+  static const String routeLogo = '$_images/route_icon.png';
 
   // Splash
   static const String splashDark = '$_images/splash_dark.png';
