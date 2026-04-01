@@ -15,7 +15,7 @@ class AppStyles {
     return GoogleFonts.jockeyOne(
       fontSize: getResponsiveFontSize(context, fontSize: 36),
       fontWeight: FontWeight.normal,
-      color: Color(0xff5669FF),
+      color: Theme.of(context).colorScheme.primary,
     );
   }
 

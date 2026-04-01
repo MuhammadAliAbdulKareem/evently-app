@@ -1,8 +1,10 @@
 import 'package:evently_app/core/constants/app_assets.dart';
+import 'package:evently_app/core/providers/settings_provider.dart';
 import 'package:evently_app/core/routes/app_routes.dart';
 import 'package:evently_app/features/onboarding/widgets/onboarding_header.dart';
 import 'package:evently_app/features/onboarding/widgets/onboarding_item.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../core/constants/app_colors.dart';
 
@@ -21,9 +23,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var isDark = theme.brightness == Brightness.dark;
+    var settingsProvider = Provider.of<SettingsProvider>(context);
+    var isDark = settingsProvider.themeMode == ThemeMode.dark;
 
-    final List<Widget> pages = [
+    final List<OnboardingItem> pages = [
       OnboardingItem(
         image: isDark
             ? AppAssets.onboardingDarkLogo2
@@ -56,7 +59,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         child: Column(
           children: [
             const OnboardingHeader(),
-
             Expanded(
               child: PageView(
                 controller: _pageController,
@@ -119,7 +121,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         decoration: BoxDecoration(
                           color: isActive
                               ? theme.colorScheme.primary
-                              : LightColors.cream,
+                              : isDark
+                              ? DarkColors.cream
+                              : LightColors.darkGreyOpacity50,
                           borderRadius: BorderRadius.circular(4),
                         ),
                       );

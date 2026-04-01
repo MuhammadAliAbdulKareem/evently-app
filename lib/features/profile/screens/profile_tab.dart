@@ -1,4 +1,5 @@
 import 'package:evently_app/core/providers/settings_provider.dart';
+import 'package:evently_app/core/theme/app_styles.dart';
 import 'package:evently_app/features/profile/widgets/language_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -38,10 +39,20 @@ class ProfileTab extends StatelessWidget {
             ),
             child: Row(
               children: [
-                CircleAvatar(
-                  radius: 40,
-                  backgroundImage: AssetImage(AppAssets.routeLogo),
-                  backgroundColor: Colors.white,
+                Container(
+                  width: 80,
+                  height: 80,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.onPrimary,
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(0),
+                      topRight: Radius.circular(40),
+                      bottomLeft: Radius.circular(40),
+                      bottomRight: Radius.circular(40),
+                    ),
+                  ),
+                  child: Image.asset(AppAssets.routeLogo, fit: BoxFit.fill),
                 ),
                 const SizedBox(width: 20),
                 Expanded(
@@ -50,15 +61,17 @@ class ProfileTab extends StatelessWidget {
                     children: [
                       Text(
                         'John Safwat',
-                        style: theme.textTheme.titleLarge?.copyWith(
-                          color: Colors.white,
+                        style: AppStyles.roboto22(context).copyWith(
+                          color: theme.colorScheme.onPrimary,
+                          fontSize: 24,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
                         'johnsafwat.route@gmail.com',
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          color: Colors.white,
+                        style: AppStyles.inter14(context).copyWith(
+                          color: theme.colorScheme.onPrimary,
+                          fontSize: 16,
                         ),
                       ),
                     ],
@@ -75,9 +88,9 @@ class ProfileTab extends StatelessWidget {
                 children: [
                   Text(
                     localizations.language,
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: AppStyles.inter24(
+                      context,
+                    ).copyWith(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 10),
                   InkWell(
@@ -102,7 +115,7 @@ class ProfileTab extends StatelessWidget {
                             settingsProvider.locale.languageCode == 'en'
                                 ? localizations.english
                                 : localizations.arabic,
-                            style: theme.textTheme.titleMedium?.copyWith(
+                            style: AppStyles.inter24(context).copyWith(
                               color: theme.colorScheme.primary,
                               fontWeight: FontWeight.bold,
                             ),
@@ -119,9 +132,9 @@ class ProfileTab extends StatelessWidget {
                   const SizedBox(height: 20),
                   Text(
                     localizations.theme,
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: AppStyles.inter24(
+                      context,
+                    ).copyWith(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 10),
                   InkWell(
@@ -147,7 +160,7 @@ class ProfileTab extends StatelessWidget {
                             settingsProvider.themeMode == ThemeMode.dark
                                 ? localizations.dark
                                 : localizations.light,
-                            style: theme.textTheme.titleMedium?.copyWith(
+                            style: AppStyles.inter24(context).copyWith(
                               color: theme.colorScheme.primary,
                               fontWeight: FontWeight.bold,
                             ),
@@ -169,7 +182,7 @@ class ProfileTab extends StatelessWidget {
                         // Logout logic
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red,
+                        backgroundColor: theme.colorScheme.error,
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
@@ -178,13 +191,13 @@ class ProfileTab extends StatelessWidget {
                       child: Row(
                         children: [
                           const SizedBox(width: 20),
-                          const Icon(Icons.logout, color: Colors.white),
+                          Icon(Icons.logout, color: theme.colorScheme.onError),
                           const SizedBox(width: 10),
                           Text(
                             localizations.logout,
-                            style: theme.textTheme.titleMedium?.copyWith(
-                              color: Colors.white,
-                            ),
+                            style: AppStyles.inter24(
+                              context,
+                            ).copyWith(color: theme.colorScheme.onError),
                           ),
                         ],
                       ),

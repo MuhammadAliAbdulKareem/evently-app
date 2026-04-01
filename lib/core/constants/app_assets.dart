@@ -27,4 +27,15 @@ class AppAssets {
       '$_images/onboarding_light_logo3.png';
   static const String onboardingLightLogo4 =
       '$_images/onboarding_light_logo4.png';
+
+  // Bottom Nav Icons
+  static const String homeIconFilled = '$_images/home_icon_filled.svg';
+  static const String homeIconOutlined = '$_images/home_icon_outlined.svg';
+  static const String profileIconFilled = '$_images/profile_icon_filled.svg';
+  static const String profileIconOutlined =
+      '$_images/profile_icon_outlined.svg';
+
+  static const String holidayBgCard = '$_images/holiday.png';
+  static const String meetingBgCard = '$_images/meeting.png';
+  static const String exhibitionBgCard = '$_images/exhibition.png';
 }

@@ -30,7 +30,7 @@ class _OnboardingStartScreenState extends State<OnboardingStartScreen> {
     var settingsProvider = Provider.of<SettingsProvider>(context);
     var theme = Theme.of(context);
     var localizations = AppLocalizations.of(context)!;
-    var isDark = theme.brightness == Brightness.dark;
+    var isDark = settingsProvider.themeMode == ThemeMode.dark;
 
     return Scaffold(
       body: Padding(
@@ -77,10 +77,11 @@ class _OnboardingStartScreenState extends State<OnboardingStartScreen> {
                   current: settingsProvider.locale.languageCode == 'en',
                   first: true,
                   second: false,
+                  borderWidth: 3,
                   spacing: 0.0,
                   style: ToggleStyle(
-                    borderColor: Colors.transparent,
-                    indicatorColor: theme.colorScheme.primary,
+                    borderColor: theme.colorScheme.primary,
+                    indicatorColor: Colors.transparent,
                     backgroundColor: Colors.transparent,
                   ),
                   height: 40,
@@ -91,14 +92,29 @@ class _OnboardingStartScreenState extends State<OnboardingStartScreen> {
                       settingsProvider.changeLanguage('ar');
                     }
                   },
-                  iconBuilder: (value) => ClipOval(
-                    child: SizedBox(
-                      width: 38,
-                      height: 38,
+
+                  iconBuilder: (value) => Container(
+                    width: 34,
+                    height: 34,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: theme.colorScheme.primary,
+                        width: 3,
+                      ),
+                    ),
+                    child: ClipOval(
                       child: CountryFlag.fromCountryCode(value ? 'US' : 'EG'),
                     ),
                   ),
-                  textBuilder: (value) => const SizedBox(),
+                  textBuilder: (value) => Container(
+                    width: 34,
+                    height: 34,
+                    decoration: BoxDecoration(shape: BoxShape.circle),
+                    child: ClipOval(
+                      child: CountryFlag.fromCountryCode(value ? 'EG' : 'US'),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -119,8 +135,9 @@ class _OnboardingStartScreenState extends State<OnboardingStartScreen> {
                   first: true,
                   second: false,
                   spacing: 0.0,
+                  borderWidth: 3,
                   style: ToggleStyle(
-                    borderColor: Colors.transparent, // Border of the switch
+                    borderColor: theme.colorScheme.primary,
                     indicatorColor: theme.colorScheme.primary,
                     backgroundColor: Colors.transparent,
                   ),
@@ -135,10 +152,12 @@ class _OnboardingStartScreenState extends State<OnboardingStartScreen> {
                   iconBuilder: (value) => Icon(
                     value ? Icons.sunny : Icons.nightlight_round,
                     color: theme.colorScheme.onPrimary,
+                    size: 28,
                   ),
                   textBuilder: (value) => Icon(
                     value ? Icons.nightlight_round : Icons.sunny,
                     color: theme.colorScheme.primary,
+                    size: 28,
                   ),
                 ),
               ],

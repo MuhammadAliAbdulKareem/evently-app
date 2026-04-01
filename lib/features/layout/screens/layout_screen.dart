@@ -1,8 +1,10 @@
 import 'package:evently_app/features/profile/screens/profile_tab.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../core/constants/app_assets.dart';
 
 class LayoutScreen extends StatefulWidget {
-  static const String routeName = '/layout';
   const LayoutScreen({super.key});
 
   @override
@@ -24,29 +26,38 @@ class _LayoutScreenState extends State<LayoutScreen> {
       body: _tabs[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white,
         currentIndex: _selectedIndex,
         onTap: (index) {
           setState(() {
             _selectedIndex = index;
           });
         },
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Map'),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Love'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        items: [
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(AppAssets.homeIconOutlined),
+            activeIcon: SvgPicture.asset(AppAssets.homeIconFilled),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.location_on_outlined),
+            activeIcon: Icon(Icons.location_on),
+            label: 'Map',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_outline),
+            activeIcon: Icon(Icons.favorite),
+            label: 'Love',
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(AppAssets.profileIconOutlined),
+            activeIcon: SvgPicture.asset(AppAssets.profileIconFilled),
+            label: 'Profile',
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        shape: const CircleBorder(
-          side: BorderSide(color: Colors.white, width: 4),
-        ),
-        child: const Icon(Icons.add, color: Colors.white),
+        child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );

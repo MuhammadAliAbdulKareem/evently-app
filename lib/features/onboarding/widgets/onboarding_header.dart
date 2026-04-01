@@ -15,7 +15,7 @@ class OnboardingHeader extends StatelessWidget {
         children: [
           Image.asset(
             AppAssets.eventlyIcon,
-            color: Color(0xff5669FF),
+            color: Theme.of(context).colorScheme.primary,
             // height: 24,
             // width: 24,
           ),

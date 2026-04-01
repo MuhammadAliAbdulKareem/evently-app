@@ -1,5 +1,6 @@
 import 'package:evently_app/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   static final ThemeData lightTheme = ThemeData(
@@ -22,9 +23,10 @@ class AppTheme {
       iconTheme: IconThemeData(color: LightColors.black),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: LightColors.white,
-      selectedItemColor: LightColors.primary,
-      unselectedItemColor: LightColors.grey,
+      elevation: 0,
+      backgroundColor: LightColors.primary,
+      selectedItemColor: LightColors.white,
+      unselectedItemColor: LightColors.white,
       type: BottomNavigationBarType.fixed,
       showSelectedLabels: true,
       showUnselectedLabels: true,
@@ -32,28 +34,20 @@ class AppTheme {
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: LightColors.primary,
       foregroundColor: LightColors.white,
-      shape: CircleBorder(side: BorderSide(color: LightColors.white, width: 4)),
+      shape: CircleBorder(side: BorderSide(color: LightColors.white, width: 5)),
     ),
-    textTheme: const TextTheme(
-      headlineLarge: TextStyle(
-        fontSize: 24,
-        fontWeight: FontWeight.bold,
-        color: LightColors.black,
+    bottomSheetTheme: const BottomSheetThemeData(
+      backgroundColor: LightColors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
-      headlineMedium: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-        color: LightColors.black,
-      ),
-      bodyLarge: TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.normal,
-        color: LightColors.black,
-      ),
-      bodyMedium: TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.normal,
-        color: LightColors.black,
+    ),
+    textTheme: GoogleFonts.interTextTheme(
+      const TextTheme(
+        headlineLarge: TextStyle(color: LightColors.black),
+        headlineMedium: TextStyle(color: LightColors.black),
+        bodyLarge: TextStyle(color: LightColors.black),
+        bodyMedium: TextStyle(color: LightColors.black),
       ),
     ),
     useMaterial3: true,
@@ -63,7 +57,7 @@ class AppTheme {
     scaffoldBackgroundColor: DarkColors.background,
     colorScheme: const ColorScheme(
       brightness: Brightness.dark,
-      primary: DarkColors.primary,
+      primary: DarkColors.primaryBlue,
       onPrimary: DarkColors.white,
       secondary: DarkColors.white,
       onSecondary: DarkColors.black,
@@ -79,8 +73,9 @@ class AppTheme {
       iconTheme: IconThemeData(color: DarkColors.white),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      elevation: 0,
       backgroundColor: DarkColors.background,
-      selectedItemColor: DarkColors.primary,
+      selectedItemColor: DarkColors.white,
       unselectedItemColor: DarkColors.white,
       type: BottomNavigationBarType.fixed,
       showSelectedLabels: true,
@@ -89,28 +84,20 @@ class AppTheme {
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: DarkColors.primary,
       foregroundColor: DarkColors.white,
-      shape: CircleBorder(side: BorderSide(color: DarkColors.white, width: 4)),
+      shape: CircleBorder(side: BorderSide(color: DarkColors.white, width: 5)),
     ),
-    textTheme: const TextTheme(
-      headlineLarge: TextStyle(
-        fontSize: 24,
-        fontWeight: FontWeight.bold,
-        color: DarkColors.white,
+    bottomSheetTheme: const BottomSheetThemeData(
+      backgroundColor: DarkColors.background,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
-      headlineMedium: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-        color: DarkColors.white,
-      ),
-      bodyLarge: TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.normal,
-        color: DarkColors.white,
-      ),
-      bodyMedium: TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.normal,
-        color: DarkColors.white,
+    ),
+    textTheme: GoogleFonts.interTextTheme(
+      const TextTheme(
+        headlineLarge: TextStyle(color: DarkColors.white),
+        headlineMedium: TextStyle(color: DarkColors.white),
+        bodyLarge: TextStyle(color: DarkColors.white),
+        bodyMedium: TextStyle(color: DarkColors.white),
       ),
     ),
     useMaterial3: true,
