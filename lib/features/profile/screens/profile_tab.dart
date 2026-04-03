@@ -86,14 +86,11 @@ class ProfileTab extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    localizations.language,
-                    style: AppStyles.inter24(
-                      context,
-                    ).copyWith(fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 10),
-                  InkWell(
+                  _SettingsRow(
+                    label: localizations.language,
+                    value: settingsProvider.locale.languageCode == 'en'
+                        ? localizations.english
+                        : localizations.arabic,
                     onTap: () {
                       showModalBottomSheet(
                         context: context,
@@ -102,42 +99,13 @@ class ProfileTab extends StatelessWidget {
                         },
                       );
                     },
-                    child: Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: theme.colorScheme.primary),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            settingsProvider.locale.languageCode == 'en'
-                                ? localizations.english
-                                : localizations.arabic,
-                            style: AppStyles.inter24(context).copyWith(
-                              color: theme.colorScheme.primary,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Icon(
-                            Icons.arrow_drop_down,
-                            color: theme.colorScheme.primary,
-                            size: 30,
-                          ),
-                        ],
-                      ),
-                    ),
                   ),
                   const SizedBox(height: 20),
-                  Text(
-                    localizations.theme,
-                    style: AppStyles.inter24(
-                      context,
-                    ).copyWith(fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 10),
-                  InkWell(
+                  _SettingsRow(
+                    label: localizations.theme,
+                    value: settingsProvider.themeMode == ThemeMode.dark
+                        ? localizations.dark
+                        : localizations.light,
                     onTap: () {
                       showModalBottomSheet(
                         context: context,
@@ -146,33 +114,6 @@ class ProfileTab extends StatelessWidget {
                         },
                       );
                     },
-                    child: Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: theme.colorScheme.primary),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            settingsProvider.themeMode == ThemeMode.dark
-                                ? localizations.dark
-                                : localizations.light,
-                            style: AppStyles.inter24(context).copyWith(
-                              color: theme.colorScheme.primary,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Icon(
-                            Icons.arrow_drop_down,
-                            color: theme.colorScheme.primary,
-                            size: 30,
-                          ),
-                        ],
-                      ),
-                    ),
                   ),
                   const Spacer(),
                   SizedBox(
@@ -210,6 +151,62 @@ class ProfileTab extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _SettingsRow extends StatelessWidget {
+  const _SettingsRow({
+    required this.label,
+    required this.value,
+    required this.onTap,
+  });
+
+  final String label;
+  final String value;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    var theme = Theme.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: AppStyles.inter24(
+            context,
+          ).copyWith(fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 10),
+        InkWell(
+          onTap: onTap,
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: theme.colorScheme.primary),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  value,
+                  style: AppStyles.inter24(context).copyWith(
+                    color: theme.colorScheme.primary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Icon(
+                  Icons.arrow_drop_down,
+                  color: theme.colorScheme.primary,
+                  size: 30,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
